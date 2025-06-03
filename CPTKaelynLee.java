@@ -6,32 +6,46 @@ public class CPTKaelynLee{
 		
 		String strName;
 		String strType;
-		int intCount=0
+		int intCount=0;
+		int intQuizCount = 0;
+		int intQuestionsCount;
+		int intChoice;
 		
 		con.println("Give me your name");
 		strName = con.readLine();
 		
-		con.println("Play Game");
+		con.println("(1)Play Game");
 		
-		con.println("View Leaderboard");
+		con.println("(2)View Leaderboard");
 		
-		con.println("Add Quiz");
+		con.println("(3)Add Quiz");
 		
-		con.println("Quit");
+		con.println("(4)Quit");
 		
+		intChoice = con.readInt();
 		
+		if(intChoice == 1){
+	
 		TextInputFile masterfile = new TextInputFile("quizzes.txt");
 		while(masterfile.eof() == false){
 			strType = masterfile.readLine();
 			intCount++;
-			con.println(strType);
-		
-		if(intCount = 1){
-			con.println
-			
-			
-			}
+			con.println(intCount + ") " + strType);		
+	
 		}
+		}
+		
+		con.println("Choose a quiz by number");
+		intChoice = con.readInt();
+		
+		if(intQuizCount == intChoice){
+			String[][] strQuiz = new String[100][5];
+			
+			
+		}
+		
+		
+		
 		
 	}
 }

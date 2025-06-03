@@ -1,0 +1,49 @@
+What is the sum of all angles in a triangle
+180
+One hundred eighty 
++180
+
+WHat is the sum of all angles in a quadrilateral
+360
+Three hundred sixty
++360
+
+What is the sum of all angles in a hexagon
+720
+Seven hundred twenty
++720
+
+How many sides does a decagon have
+10
+Ten
++10
+
+What is the angle for a right triange
+90
+Ninety
++90
+
+What is the perimeter of a square with a side length of 6.5
+26
+Twenty-six
++26
+
+What is the area of a triangle with a base of 3 and a height of 10
+15
+Fifteen
++15
+
+What is the rounded area of a circle with a radius of 5
+79
+Seventy-nine
++79
+
+What is the area of a rectangle with a width of 7 and a length of 4
+28
+Twenty-eight
++28
+
+What is the perimeter of a rectangle with a width of 3 and a length of 10
+26
+Twenty-six
++26

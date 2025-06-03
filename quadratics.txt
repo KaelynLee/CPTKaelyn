@@ -1,0 +1,49 @@
+What is the y-intercept of y=x^2-9
+-9
+Negative nine
+Minus nine
+
+What is the axis of symmetry of y=(x-3)^2
+3
+Three
++3
+
+What is the x-intercept of y=(x-3)^2
+3
+Three
++3
+
+What is the y-intercept of y=(x+2)^2
+4
+Four
++4
+
+What is the y-intercept of y=(x+3)^2-4
+5
+Five 
++5
+
+What is the h value of y=2(x-3)^2+1
+3
+Three
++=3
+
+What is the k value of y=2(x+3)^2+1
+1
+One
++1
+
+What is the a value of y=2(x-3)^2+1
+2
+Two
++2
+
+What is the axis of symmetry of y=2(x-3)^2+1
+3
+Three
++3
+
+What is the a value of y=-(x+4)^2
+-1
+Negative one
+Minus one
