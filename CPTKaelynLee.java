@@ -1,8 +1,11 @@
 import arc.*;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.awt.Font;
 
 public class CPTKaelynLee{
 	public static void main(String[] args){
-		Console con = new Console();
+		Console con = new Console(700,700);
 		
 		String strName;
 		String strType;
@@ -11,6 +14,16 @@ public class CPTKaelynLee{
 		int intQuestionsCount;
 		int intChoice;
 		
+		
+		con.setDrawColor(Color.WHITE);
+		con.fillRect(0,0,1366,768);
+		con.setTextColor(Color.BLACK); 
+		Font fntTest = con.loadFont("RushfordPrintedDemoRegular.ttf", 600);
+		con.setDrawFont(fntTest);
+		con.setDrawColor(new Color(0, 0, 0));
+		con.drawString("Math Training Game",250,80);
+		
+			
 		con.println("Give me your name");
 		strName = con.readLine();
 		
@@ -25,14 +38,23 @@ public class CPTKaelynLee{
 		intChoice = con.readInt();
 		
 		if(intChoice == 1){
-	
-		TextInputFile masterfile = new TextInputFile("quizzes.txt");
-		while(masterfile.eof() == false){
-			strType = masterfile.readLine();
-			intCount++;
-			con.println(intCount + ") " + strType);		
+			TextInputFile masterfile = new TextInputFile("quizzes.txt");
+			while(masterfile.eof() == false){
+				strType = masterfile.readLine();
+				intCount++;
+				con.println(intCount + ") " + strType);		
 	
 		}
+		
+		}else if(intChoice == 2){
+			con.println("Leaderboard");
+			
+		}else if(intChoice == 3){
+			con.println("create new");
+			
+		}else if(intChoice == 4){
+			con.println("CLOSE IT");
+		
 		}
 		
 		con.println("Choose a quiz by number");
