@@ -8,7 +8,7 @@ public class CPTKaelynLee{
 		Console con = new Console(700,700);
 		
 		String strName;
-		String strQuizName[][];
+		String strQuiz[][];
 		String strType;
 		int intCount=0;
 		int intChoice;
@@ -17,17 +17,15 @@ public class CPTKaelynLee{
 		con.setDrawColor(Color.WHITE);
 		con.fillRect(0,0,1366,768);
 		con.setTextColor(Color.BLACK); 
-		Font fntTest = con.loadFont("RushfordPrinted-MVnDe.ttf", 65);
+		Font fntTest = con.loadFont("RushfordPrinted-MVnDe.ttf", 60);
 		con.setDrawFont(fntTest);
 		con.setDrawColor(new Color(0, 0, 0));
 		con.drawString("Math Training Game",110,30);
 		int intX = 100;
 		int intY = 100;
-		BufferedImage imgMath = con.loadImage("mathlogo.jpeg");
+		BufferedImage imgMath = con.loadImage("real.jpeg");
+		imgMath = bufferedImage.getScaledInstance(800, 500, imgMath.SCALE_DEFAULT);
 		con.drawImage(imgMath,intX,intY);
-		
-		
-			
 		
 		
 		con.println("(1)Play Game");
@@ -59,16 +57,44 @@ public class CPTKaelynLee{
 		
 		if(intChoice>0 && intChoice<= intCount){
 			
+			strQuiz = new String[100][5];
 			
-			strQuizName = new String[100][5];
-			strQuizName[0][0] = ("What is 2+2");
-			strQuizName[0][1] = ("4");
-			strQuizName[0][2] = ("Four");
-			strQuizName[0][3] = ("+4");
+			TextInputFile linearquiz = new TextInputFile("linear.txt");
 			
-			con.println(strQuizName[0][0]);
-			 con.println("A) " + strQuizName[0][1]);
 			
+			int intBubble;
+			int intRowNumber=0;
+			String strAnswer;
+			
+			
+			while(linearquiz.eof()==false){
+				strQuiz[intRowNumber][0] = linearquiz.readLine();
+				strQuiz[intRowNumber][1] = linearquiz.readLine();
+				strQuiz[intRowNumber][2] = linearquiz.readLine();
+				strQuiz[intRowNumber][3] = linearquiz.readLine();
+				//bubble sort this line
+	
+				
+				//print the question, wait for user to answer, use if statement to check if correct
+				
+				con.println(strQuiz[intRowNumber][0]);
+				con.println("Your Answer: ");
+				strAnswer = con.readLine();
+				
+				if(strAnswer.equalsIgnoreCase(strQuiz[intRowNumber][1]) || strAnswer.equalsIgnoreCase(strQuiz[intRowNumber][2]) || strAnswer.equalsIgnoreCase(strQuiz[intRowNumber][3])){
+					con.println("TEST: correct");
+					//remove
+					
+				}else{
+					con.println("TEST: wrong");
+					//remove
+					
+				}
+			
+				intRowNumber++;
+			
+		}
+		
 		}
 		
 		}else if(intChoice == 2){
