@@ -69,8 +69,8 @@ public class CPTKaelynLee{
 		
 		if(intQuizChoice>0 && intQuizChoice < intCount){
 			
-			strQuiz = new String[100][5];
-			//change to 5 later
+			strQuiz = new String[100][4];
+			//temporary row number, change to 5 later
 			
 			TextInputFile userchoose = new TextInputFile(strChooseSpecificQuiz[intQuizChoice-1]);
 			
@@ -84,11 +84,8 @@ public class CPTKaelynLee{
 				strQuiz[intRowNumber][1] = userchoose.readLine();
 				strQuiz[intRowNumber][2] = userchoose.readLine();
 				strQuiz[intRowNumber][3] = userchoose.readLine();
-				//bubble sort this line
+				//bubble sort this next line
 				intRowNumber++;
-		
-				
-		
 				
 			}
 			
@@ -96,51 +93,56 @@ public class CPTKaelynLee{
 			
 			for(int intiam = 0; intiam < intRowNumber; intiam++) {
 				con.println(strQuiz[intiam][0]);
+				//print each question based on how many were counted above
 				con.println("Answer: ");
 				strAnswer = con.readLine();
 				
 			}
 			
-			
-		
-			/*	for(intTESTCOUNT=0; intTESTCOUNT < intRowNumber; intTESTCOUNT++){
-					//bottom is trial
-				con.println(strQuiz[intTESTCOUNT][0]);
-				con.println("Answer: ");
-				strAnswer = con.readLine();
-				
-				if(strAnswer.equalsIgnoreCase(strQuiz[intTESTCOUNT][1]) || strAnswer.equalsIgnoreCase(strQuiz[intTESTCOUNT][2]) || strAnswer.equalsIgnoreCase(strQuiz[intTESTCOUNT][3])){
-					con.println("TEST: correct");
-					//remove
-					
-				}else{
-					con.println("TEST: wrong");
-					//remove
-					
-				}
-			
-				
-			
 		}
-		
-	*/
-		
-	}
 	
-		//}else if(intChoice == 2){
-		//	con.println("Leaderboard");
+	
+		
+		}else if(intChoice == 2){
+			con.println("Leaderboard");
+		
+		}else if(intChoice == 3){
 			
-		//}else if(intChoice == 3){
-		//	con.println("create new");
+			String strNewGameName;
+			String strNewQuestion;
+			String strNewAnswer1;
+			String strNewAnswer2;
+			String strNewAnswer3;
+			int intNewQuizCount=1;
 			
-		//}else if(intChoice == 4){
-		//	con.println("CLOSE IT");
+			con.println("Quiz Name: ");
+			strNewGameName = con.readLine();
+			TextOutputFile quizzes = new TextOutputFile("quizzes.txt", true);
+			quizzes.println(strNewGameName);
+			
+			for(intNewQuizCount=0; intNewQuizCount<=10; intNewQuizCount++){
+				con.println("Question: ");
+				strNewQuestion = con.readLine();
+				con.println("Answer 1: ");
+				strNewAnswer1 = con.readLine();
+				con.println("Answer 2: ");
+				strNewAnswer2 = con.readLine();
+				con.println("Answer 3: ");
+				strNewAnswer3 = con.readLine();
+				
+				TextOutputFile newquiz = new TextOutputFile("strNewGameName.txt");
+				//MAKE SURE THE GAME NAME and then .txt
+				newquiz.println(strNewQuestion);
+				newquiz.println(strNewAnswer1);
+				newquiz.println(strNewAnswer2);
+				newquiz.println(strNewAnswer3);
 		
 		}
+	}
+			
+		else if(intChoice == 4){
+			con.println("Quit");
 		
-		
-		
-		
-		
+		}
 	}
 }
