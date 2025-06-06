@@ -5,7 +5,7 @@ import java.awt.Font;
 
 public class CPTKaelynLee{
 	public static void main(String[] args){
-		Console con = new Console(700,700);
+		Console con = new Console("Math Training Game",1280,720);
 		
 		String strName;
 		String strQuiz[][];
@@ -18,39 +18,42 @@ public class CPTKaelynLee{
 		//set the background colour to white
 		con.setTextColor(Color.BLACK); 
 		//set the font colour to black
-		Font fntTest = con.loadFont("NewminRegular-ov6aa.ttf", 65);
+		
+		Font fntTest = con.loadFont("NewminRegular-ov6aa.ttf", 70);
 		con.setDrawFont(fntTest);
 		con.setDrawColor(new Color(0, 0, 0));
-		con.drawString("Math Training Game",55,30);
+		con.drawString("Math Training Game",345,45);
 		//set font and game title
-		int intX = 210;
-		int intY = 135;
+		con.repaint();
 		BufferedImage imgMath = con.loadImage("real15b.jpg");
-		con.drawImage(imgMath,intX,intY);
+		con.drawImage(imgMath,530,165);
 		//add game logo 
-		
-		boolean blnRun;
-		
-	//	while(blnRun = true){
-			//BLN TEST
-		con.println("(1)Play Game");
-		con.println("(2)View Leaderboard");
-		con.println("(3)Add Quiz");
-		con.println("(4)Quit");
+		con.repaint();
+	
+		Font fntOption=con.loadFont("NewminRegular-ov6aa.ttf",45);
+		con.setDrawFont(fntOption);
+		con.drawString("(1)Play Game",498,420);
+		con.drawString("(2)View Leaderboard",410,490);
+		con.drawString("(3)Add Quiz",508,560);
+		con.drawString("(4)Quit",560,630);
 		//Main menu screen options
-		
+		con.repaint();
 		int intKey = con.getKey();
 		
 		String strChooseSpecificQuiz[];
 			
 		// 1) PLAY GAME
 		if(intKey == '1'){
-			con.clear();
-			//clear previous text
-			con.println("Enter Name: ");
+			con.setDrawColor(Color.WHITE);
+			con.fillRect(0,0,1366,768);
+			con.setTextColor(Color.BLACK); 
+			//clear previous 
+			Font fntGamePlay=con.loadFont("BilonaMedium-2v6W3.ttf",30);
+			con.setDrawFont(fntGamePlay);
+			con.drawString("Enter Name:",600,300);
 			strName = con.readLine();
-			
-			con.clear();
+			con.repaint();
+			//con.clear();
 			
 			TextInputFile masterfile = new TextInputFile("quizzes.txt");
 			//input quiz type options onto screen for user to choose - load into 1 dimensional array
@@ -173,17 +176,9 @@ public class CPTKaelynLee{
 		
 		
 		else if(intKey == '4'){
-			con.println("Quit");
 			System.exit(0);
 			
 			//mouse input - clik quit to go back 
-		
-		//	blnRun = false;
-			
-			
-			
-			//}
-		//TEST CLOSE BRACKET BLN
 			
 		
 		}
