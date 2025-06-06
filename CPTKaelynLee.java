@@ -13,40 +13,44 @@ public class CPTKaelynLee{
 		int intCount=0;
 		int intChoice;
 		
-		
 		con.setDrawColor(Color.WHITE);
 		con.fillRect(0,0,1366,768);
 		//set the background colour to white
 		con.setTextColor(Color.BLACK); 
 		//set the font colour to black
-		Font fntTest = con.loadFont("RushfordPrinted-MVnDe.ttf", 60);
+		Font fntTest = con.loadFont("NewminRegular-ov6aa.ttf", 65);
 		con.setDrawFont(fntTest);
 		con.setDrawColor(new Color(0, 0, 0));
-		con.drawString("Math Training Game",110,30);
+		con.drawString("Math Training Game",55,30);
 		//set font and game title
-		int intX = 100;
-		int intY = 100;
-		BufferedImage imgMath = con.loadImage("real.jpeg");
-		//imgMath = bufferedImage.getScaledInstance(800, 500, imgMath.SCALE_DEFAULT);
-		//RESIZE TEST
+		int intX = 210;
+		int intY = 135;
+		BufferedImage imgMath = con.loadImage("real15b.jpg");
 		con.drawImage(imgMath,intX,intY);
 		//add game logo 
 		
+		boolean blnRun;
 		
+	//	while(blnRun = true){
+			//BLN TEST
 		con.println("(1)Play Game");
 		con.println("(2)View Leaderboard");
 		con.println("(3)Add Quiz");
 		con.println("(4)Quit");
 		//Main menu screen options
 		
-		intChoice = con.readInt();
+		int intKey = con.getKey();
 		
 		String strChooseSpecificQuiz[];
 			
 		// 1) PLAY GAME
-		if(intChoice == 1){
+		if(intKey == '1'){
+			con.clear();
+			//clear previous text
 			con.println("Enter Name: ");
 			strName = con.readLine();
+			
+			con.clear();
 			
 			TextInputFile masterfile = new TextInputFile("quizzes.txt");
 			//input quiz type options onto screen for user to choose - load into 1 dimensional array
@@ -61,14 +65,16 @@ public class CPTKaelynLee{
 				//+1 -1 is due to index, since it has to start at 0
 		}
 		
-		
 		int intQuizChoice; 
 		
 		con.println("Choose a quiz by number");
 		intQuizChoice = con.readInt();
 		
+		con.clear();
+		
 		if(intQuizChoice>0 && intQuizChoice < intCount){
-			
+			con.println("(1)Start Quiz");
+			int int1 = con.getKey();
 			strQuiz = new String[100][4];
 			//temporary row number, change to 5 later
 			
@@ -85,11 +91,14 @@ public class CPTKaelynLee{
 				strQuiz[intRowNumber][2] = userchoose.readLine();
 				strQuiz[intRowNumber][3] = userchoose.readLine();
 				//bubble sort this next line
+				
+				
 				intRowNumber++;
 				
 			}
 			
-			con.println("Loaded " + intRowNumber + " questions.");	
+			//con.println("Loaded " + intRowNumber + " questions.");
+			//remove this line = TEST	
 			
 			for(int intiam = 0; intiam < intRowNumber; intiam++) {
 				con.println(strQuiz[intiam][0]);
@@ -97,16 +106,38 @@ public class CPTKaelynLee{
 				con.println("Answer: ");
 				strAnswer = con.readLine();
 				
+				if(strAnswer.equalsIgnoreCase(strQuiz[intiam][1]) || strAnswer.equalsIgnoreCase(strQuiz[intiam][2]) || strAnswer.equalsIgnoreCase(strQuiz[intiam][3])){
+					con.println("TEST: correct");
+					//remove?
+					
+				}else{
+					con.println("TEST: wrong");
+					//remove?
+					
+				}
+				
 			}
 			
 		}
+				
+		//write user name, quiz name, score, 
+		//new screen(MAKE SURE) - NOT DONE YET|
+				con.println(strName);
+				con.println(strChooseSpecificQuiz[intQuizChoice - 1]);
 	
-	
-		
-		}else if(intChoice == 2){
+		}else if(intKey == '2'){
 			con.println("Leaderboard");
+			
+			//Output user score, quiz name, and user name to the file, arrange based on highest to lowest
+			//create a 2d array 3 columns, sort by percent column(3)
+			
+			TextOutputFile endofQuiz = new TextOutputFile("leaderboard.txt");
+		//	endofQuiz.println();
+		//	endofQuiz.println();
+		//	endofQuiz.println();
+			
 		
-		}else if(intChoice == 3){
+		}else if(intKey == '3'){
 			
 			String strNewGameName;
 			String strNewQuestion;
@@ -131,7 +162,7 @@ public class CPTKaelynLee{
 				strNewAnswer3 = con.readLine();
 				
 				TextOutputFile newquiz = new TextOutputFile("strNewGameName.txt");
-				//MAKE SURE THE GAME NAME and then .txt
+				//MAKE SURE THE GAME NAME and then .txt (CURRENTLY WRONG)
 				newquiz.println(strNewQuestion);
 				newquiz.println(strNewAnswer1);
 				newquiz.println(strNewAnswer2);
@@ -139,9 +170,21 @@ public class CPTKaelynLee{
 		
 		}
 	}
-			
-		else if(intChoice == 4){
+		
+		
+		else if(intKey == '4'){
 			con.println("Quit");
+			System.exit(0);
+			
+			//mouse input - clik quit to go back 
+		
+		//	blnRun = false;
+			
+			
+			
+			//}
+		//TEST CLOSE BRACKET BLN
+			
 		
 		}
 	}
