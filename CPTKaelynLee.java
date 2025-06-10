@@ -12,6 +12,7 @@ public class CPTKaelynLee{
 		String strType;
 		int intCount=0;
 		int intChoice;
+		int intInterval=100;
 		
 		con.setDrawColor(Color.WHITE);
 		con.fillRect(0,0,1366,768);
@@ -36,6 +37,7 @@ public class CPTKaelynLee{
 		con.drawString("(v)View Leaderboard",410,490);
 		con.drawString("(c)Create Quiz",508,560);
 		con.drawString("(q)Quit",560,630);
+		con.drawString("(h)Help",560,700);
 		//Main menu screen options
 		con.repaint();
 		
@@ -54,44 +56,76 @@ public class CPTKaelynLee{
 			con.setDrawColor(new Color(0, 0, 0));
 			con.drawString("Enter Name: ",300,300);
 			strName = con.readLine();
-			con.clear();
+			con.setDrawColor(Color.WHITE);
+			con.fillRect(0,0,1366,768);
+			con.setDrawColor(new Color(0, 0, 0));
+			con.setDrawFont(fntGamePlay);
 			con.drawString((strName),600,300);
+			con.repaint();
+			con.clear();
 			
+			//WAIT TIME
+				
 			TextInputFile masterfile = new TextInputFile("quizzes.txt");
 			//input quiz type options onto screen for user to choose - load into 1 dimensional array
 			
 			strChooseSpecificQuiz = new String[100];
 		
-			con.clear();
-			con.repaint();
+			con.setDrawColor(Color.WHITE);
+			con.fillRect(0,0,1366,768);
+			con.setTextColor(Color.BLACK); 
+			//clear previous 
+			Font fntSelection=con.loadFont("BilonaMedium-2v6W3.ttf",40);
+			con.setDrawFont(fntSelection);
+			con.setDrawColor(new Color(0, 0, 0));
 			
 			while(masterfile.eof() == false){
 				strChooseSpecificQuiz[intCount] = masterfile.readLine();
 				//the number of quizzes avaliable to choose from
-				con.drawString((intCount + 1) + ") " + strChooseSpecificQuiz[intCount],150,500);		
+				con.repaint();
+				con.drawString("Choose a Quiz:",600,80);
+				con.drawString((intCount + 1) + ") " + strChooseSpecificQuiz[intCount],150,50+intInterval);		
 				intCount++;
+				intInterval = intInterval+65;
 				//+1 -1 is due to index, since it has to start at 0
 				
 				//USE A KEY HERE - NEED TO ADD
 		}
 		
 		int intQuizChoice; 
-		
-		con.drawString("Quiz List",200,900);
 		intQuizChoice = con.readInt();
-		
-		con.clear();
+		con.setDrawColor(Color.WHITE);
+		con.fillRect(0,0,1366,768);
+		con.setTextColor(Color.BLACK);
+		con.repaint();
 		
 		int intAnswerChecker=0;
 		int intScore;
 			
 		if(intQuizChoice>0 && intQuizChoice < intCount){
-			con.println("(1)Start Quiz");
-			int int1 = con.getKey();
+			con.setDrawColor(Color.WHITE);
+			con.fillRect(0,0,1366,768);
+			con.setTextColor(Color.BLACK); 
+			Font fntStart=con.loadFont("BilonaMedium-2v6W3.ttf",100);
+			con.setDrawFont(fntStart);
+			con.setDrawColor(new Color(0, 0, 0));
+			con.clear();
+			con.repaint();
+			con.drawString("(1)Start Quiz", 400,300);
+			con.repaint();
+			int intPress = con.getKey();
+			
+		
+			if(intPress == '1'){
+			
+			con.setDrawColor(Color.WHITE);
+			con.fillRect(0,0,1366,768);
+			con.repaint();
+			TextInputFile userchoose = new TextInputFile(strChooseSpecificQuiz[intQuizChoice-1]);
+			
 			strQuiz = new String[100][4];
 			//temporary row number, change to 5 later
 			
-			TextInputFile userchoose = new TextInputFile(strChooseSpecificQuiz[intQuizChoice-1]);
 			
 			int intRowNumber=0;
 			//int intTESTCOUNT=0;
@@ -108,9 +142,11 @@ public class CPTKaelynLee{
 				
 				intRowNumber++;
 				
+				userchoose.close();
+			
 			}
 			
-			//con.println("Loaded " + intRowNumber + " questions.");
+			con.println("Loaded " + intRowNumber + " questions.");
 			//remove this line = TEST	
 			
 			for(int intiam = 0; intiam < intRowNumber; intiam++) {
@@ -126,7 +162,7 @@ public class CPTKaelynLee{
 					
 				}else{
 					con.println("Wrong");
-					//remove?
+					
 					
 				}
 				
@@ -141,7 +177,7 @@ public class CPTKaelynLee{
 				con.println(intAnswerChecker+"/10");
 				intScore = intAnswerChecker/10*100;
 				con.println(intScore);
-	
+	}
 		}else if(intKey == 'v'){
 			con.println("Leaderboard");
 			
@@ -189,8 +225,12 @@ public class CPTKaelynLee{
 	}
 		
 		
-		else if(intKey == 'q' || intKey == 'Q'){
-			System.exit(0);
+		else if(intKey == 'h' || intKey == 'Q'){
+			
+		
+		//(intKey == 'q' || intKey == 'Q'){
+		//	System.exit(0);
+		//ADD ONE MORE ELSE IF
 			
 			//mouse input - clik quit to go back 
 			
