@@ -31,13 +31,16 @@ public class CPTKaelynLee{
 		//add game logo 
 		con.repaint();
 	
-		Font fntOption=con.loadFont("NewminRegular-ov6aa.ttf",45);
+		Font fntOption=con.loadFont("NewminRegular-ov6aa.ttf",40);
 		con.setDrawFont(fntOption);
-		con.drawString("(p)Play Game",510,420);
-		con.drawString("(v)View Leaderboard",410,490);
-		con.drawString("(c)Create Quiz",508,560);
-		con.drawString("(q)Quit",560,630);
-		con.drawString("(h)Help",560,700);
+		con.drawString("[p]Play Game",510,400);
+		con.drawString("[v]View Leaderboard",420,460);
+		con.drawString("[c]Create Quiz",508,520);
+		con.drawString("[q]Quit",560,580);
+		con.drawString("[h]Help",560,640);
+		con.drawString("[s]Secret Menu",0,0);
+		con.setDrawColor(Color.WHITE);
+		con.fillOval(0, 0, 350, 90);
 		//Main menu screen options
 		con.repaint();
 		
@@ -55,7 +58,7 @@ public class CPTKaelynLee{
 			con.setDrawFont(fntGamePlay);
 			con.setDrawColor(new Color(0, 0, 0));
 			con.drawString("Enter Name: ",300,300);
-			strName = con.readLine();
+			strName = con.readLine();			
 			con.setDrawColor(Color.WHITE);
 			con.fillRect(0,0,1366,768);
 			con.setDrawColor(new Color(0, 0, 0));
@@ -63,6 +66,16 @@ public class CPTKaelynLee{
 			con.drawString((strName),600,300);
 			con.repaint();
 			con.clear();
+		
+		if(strName.equalsIgnoreCase("statitan")){
+			con.clear();
+			con.repaint();
+			con.drawString("YAY",300,400);
+			
+			
+			}
+			
+			
 			
 			//WAIT TIME
 				
@@ -121,51 +134,47 @@ public class CPTKaelynLee{
 			con.setDrawColor(Color.WHITE);
 			con.fillRect(0,0,1366,768);
 			con.repaint();
-			TextInputFile userchoose = new TextInputFile(strChooseSpecificQuiz[intQuizChoice-1]);
 			
 			strQuiz = new String[100][4];
-			//temporary row number, change to 5 later
 			
-			
-			int intRowNumber=0;
-			//int intTESTCOUNT=0;
 			String strAnswer;
+			String strQuestion;
+			String strAnswer1;
+			String strAnswer2;
+			String strAnswer3;
+			int intQuestion=0;
 			
+			TextInputFile userchoose = new TextInputFile(strChooseSpecificQuiz[intQuizChoice-1]);
+		
+			intQuestion =0;
 			
-			while(userchoose.eof()==false){
-				strQuiz[intRowNumber][0] = userchoose.readLine();
-				strQuiz[intRowNumber][1] = userchoose.readLine();
-				strQuiz[intRowNumber][2] = userchoose.readLine();
-				strQuiz[intRowNumber][3] = userchoose.readLine();
-				//bubble sort this next line
-				
-				
-				intRowNumber++;
-				
-				userchoose.close();
-			
+			while(userchoose.eof() == false){
+				strQuiz[intQuestion][0] = userchoose.readLine();
+				strQuiz[intQuestion][1] = userchoose.readLine(); 
+				strQuiz[intQuestion][2] = userchoose.readLine(); 
+				strQuiz[intQuestion][3] = userchoose.readLine(); 
+				intQuestion++;
 			}
 			
-			con.println("Loaded " + intRowNumber + " questions.");
-			//remove this line = TEST	
 			
-			for(int intiam = 0; intiam < intRowNumber; intiam++) {
-				con.println(strQuiz[intiam][0]);
-				//print each question based on how many were counted above
+			for(intQuestion=0; intQuestion<10; intQuestion++){
+				con.println(strQuiz[intQuestion][0]);	
 				con.println("Answer: ");
 				strAnswer = con.readLine();
 				
-				if(strAnswer.equalsIgnoreCase(strQuiz[intiam][1]) || strAnswer.equalsIgnoreCase(strQuiz[intiam][2]) || strAnswer.equalsIgnoreCase(strQuiz[intiam][3])){
+				if(strAnswer.equalsIgnoreCase(strQuiz[intQuestion][1]) || strAnswer.equalsIgnoreCase(strQuiz[intQuestion][2]) || strAnswer.equalsIgnoreCase(strQuiz[intQuestion][3])){
 					con.println("Correct");
 					intAnswerChecker++;
 					con.println(intAnswerChecker+"/10");
 					
 				}else{
 					con.println("Wrong");
-					
+					con.println(intAnswerChecker+"/10");
 					
 				}
 				
+				con.clear();
+					
 			}
 			
 		}
@@ -175,7 +184,7 @@ public class CPTKaelynLee{
 				con.println(strName);
 				con.println(strChooseSpecificQuiz[intQuizChoice - 1]);
 				con.println(intAnswerChecker+"/10");
-				intScore = intAnswerChecker/10*100;
+				intScore = Math.round(intAnswerChecker/10*100)/100;
 				con.println(intScore);
 	}
 		}else if(intKey == 'v'){
@@ -224,17 +233,31 @@ public class CPTKaelynLee{
 		}
 	}
 		
-		
-		else if(intKey == 'h' || intKey == 'Q'){
+		else if(intKey == 'h' || intKey == 'H'){
 			
+			con.setDrawColor(Color.WHITE);
+			con.fillRect(0,0,1366,768);
+			con.setTextColor(Color.BLACK); 
+			Font fntGamePlay=con.loadFont("BilonaMedium-2v6W3.ttf",60);
+			con.setDrawFont(fntGamePlay);
+			con.setDrawColor(new Color(0, 0, 0));
+			con.repaint();
+			con.drawString("Help",300,300);
 		
-		//(intKey == 'q' || intKey == 'Q'){
-		//	System.exit(0);
-		//ADD ONE MORE ELSE IF
-			
-			//mouse input - clik quit to go back 
-			
+		}else if(intKey == 'q' || intKey == 'Q'){
+			System.exit(0);
 		
+		}else if(intKey == 's' || intKey == 'S'){
+			con.setDrawColor(Color.WHITE);
+			con.fillRect(0,0,1366,768);
+			con.setTextColor(Color.BLACK); 
+			Font fntGamePlay=con.loadFont("BilonaMedium-2v6W3.ttf",80);
+			con.setDrawFont(fntGamePlay);
+			con.setDrawColor(new Color(0, 0, 0));
+			con.repaint();
+			con.drawString("Write joke",300,300);
+			
 		}
+							
 	}
 }

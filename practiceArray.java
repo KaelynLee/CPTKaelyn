@@ -7,33 +7,32 @@ public class practiceArray{
 		String strAnswer1;
 		String strAnswer2;
 		String strAnswer3;
-		int intCount=1;
 		int intQuestion=0;
 		String strQuiz[][];
+		int intCount;
+		
+		strQuiz = new String[100][4];
 		
 		TextInputFile linear = new TextInputFile("linear.txt");
-			
-			while(linear.eof() == false){
+		
+		while(linear.eof() == false){
 				strQuestion = linear.readLine();
 				intQuestion++;
 				strAnswer1 = linear.readLine();
-				intCount++;
 				strAnswer2 = linear.readLine();
-				intCount++;
 				strAnswer3 = linear.readLine();
-				intCount++;
 				
+				con.println(strQuestion);
+			}
+			
+			
+			
+			for(intQuestion=0; intQuestion<10; intQuestion++){
+				con.println(strQuiz[intQuestion][0]);	
 				
 			}
 			
 			linear.close();
-			strQuiz = new String [100][3];
-			con.println("The number of students: "+intQuestion);
-		
-		
-		
-		
-		
 		
 	}
 }

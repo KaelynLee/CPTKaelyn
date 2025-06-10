@@ -2,51 +2,39 @@ What is the slope of y=5x+9
 5
 Five
 +5
-
 What is the y-intercept of y=-2x-3
 -3
 Negative three
 Minus three
-
 What is the x-intercept of y=-5x+5
 1
 One
 +1
-
 Solve for y in y=3x-2 when x=2
 4
 Four
 +4
-
 What is the slope of y=-2x+3
 -2
 Negative two
 Minus two
-
 What is the slope of 6x-3y=9
 2
 Two
 +2
-
 What is the y-intercept of y=3/4x-9
 -9
 Negative nine
 Minus nine
-
 What is the x-intercept of x+y=3
 3
 Three
 +3
-
 What is the slope of y=-x
 -1
 Negative one
 Minus one
-
 Solve for y in y=6x-9 when x=2
 3
 Three
 +3
-
-
-
