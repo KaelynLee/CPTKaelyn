@@ -1,1 +1,9 @@
-
+kaelyn
+basicmath.txt
+80%
+statitan
+linear.txt
+20%
+kl
+linear.txt
+10%

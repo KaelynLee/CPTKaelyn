@@ -7,12 +7,16 @@ public class CPTKaelynLee{
 	public static void main(String[] args){
 		Console con = new Console("Math Training Game",1280,720);
 		
-		String strName;
+		String strName = "";
 		String strQuiz[][];
 		String strType;
 		int intCount=0;
 		int intChoice;
 		int intInterval=100;
+		int intScore = 0;
+		String strChooseSpecificQuiz[] = new String[100];
+		int intQuizChoice = -1; 
+		
 		
 		con.setDrawColor(Color.WHITE);
 		con.fillRect(0,0,1366,768);
@@ -45,11 +49,9 @@ public class CPTKaelynLee{
 		con.repaint();
 		
 		int intKey = con.getKey();
-		String strName1;
-		String strChooseSpecificQuiz[];
 			
 		// 1) PLAY GAME
-		if(intKey == 'p' || intKey == 'P'){
+	 	if(intKey == 'p' || intKey == 'P'){
 			con.setDrawColor(Color.WHITE);
 			con.fillRect(0,0,1366,768);
 			con.setTextColor(Color.BLACK); 
@@ -58,8 +60,12 @@ public class CPTKaelynLee{
 			con.setDrawFont(fntGamePlay);
 			con.setDrawColor(new Color(0, 0, 0));
 			con.drawString("Enter Name: ",300,300);
-			strName = con.readLine();			
+			con.setTextColor(Color.WHITE); 
+			strName = con.readLine(); 
+			con.drawString(strName,640,300);		
 			con.setDrawColor(Color.WHITE);
+			con.sleep(1500); 
+			con.setTextColor(Color.BLACK);
 			con.fillRect(0,0,1366,768);
 			con.setDrawColor(new Color(0, 0, 0));
 			con.setDrawFont(fntGamePlay);
@@ -70,12 +76,9 @@ public class CPTKaelynLee{
 		if(strName.equalsIgnoreCase("statitan")){
 			con.clear();
 			con.repaint();
-			con.drawString("YAY",300,400);
+			con.drawString("BONUS POINT",300,400);
 			
-			
-			}
-			
-			
+		}
 			
 			//WAIT TIME
 				
@@ -101,19 +104,30 @@ public class CPTKaelynLee{
 				intCount++;
 				intInterval = intInterval+65;
 				//+1 -1 is due to index, since it has to start at 0
-				
 				//USE A KEY HERE - NEED TO ADD
 		}
 		
-		int intQuizChoice; 
+
 		intQuizChoice = con.readInt();
-		con.setDrawColor(Color.WHITE);
-		con.fillRect(0,0,1366,768);
-		con.setTextColor(Color.BLACK);
-		con.repaint();
+		
+		if(intQuizChoice < 1){
+			con.setDrawColor(Color.WHITE);
+			con.fillRect(0,0,1366,768);
+			Font fntPart = con.loadFont("BilonaMedium-2v6W3.ttf",100);
+			con.setDrawFont(fntPart);
+			con.setDrawColor(new Color(255, 0, 0));
+			con.repaint();
+			con.clear();
+			con.drawString("Invalid Choice Selected",350,250);
+			
+		}else{
+			con.setDrawColor(Color.WHITE);
+			con.fillRect(0,0,1366,768);
+			con.setTextColor(Color.BLACK);
+			con.repaint();
 		
 		int intAnswerChecker=0;
-		int intScore;
+		
 			
 		if(intQuizChoice>0 && intQuizChoice < intCount){
 			con.setDrawColor(Color.WHITE);
@@ -157,6 +171,16 @@ public class CPTKaelynLee{
 			}
 			
 			
+			//intBubbleCount++;
+		//	int intRow;
+			
+		//	intRow = strQuiz[intBubbleCount];
+			
+			
+			
+			
+			
+			
 			for(intQuestion=0; intQuestion<10; intQuestion++){
 				con.println(strQuiz[intQuestion][0]);	
 				con.println("Answer: ");
@@ -165,40 +189,86 @@ public class CPTKaelynLee{
 				if(strAnswer.equalsIgnoreCase(strQuiz[intQuestion][1]) || strAnswer.equalsIgnoreCase(strQuiz[intQuestion][2]) || strAnswer.equalsIgnoreCase(strQuiz[intQuestion][3])){
 					con.println("Correct");
 					intAnswerChecker++;
-					con.println(intAnswerChecker+"/10");
+					con.println("Current Score: "+intAnswerChecker+"/10");
 					
 				}else{
 					con.println("Wrong");
-					con.println(intAnswerChecker+"/10");
+					con.println("Current Score: "+intAnswerChecker+"/10");
 					
 				}
 				
-				con.clear();
+			con.sleep(1400); 
+			con.clear();
 					
 			}
 			
 		}
 				
-		//write user name, quiz name, score, 
-		//new screen(MAKE SURE) - NOT DONE YET|
 				con.println(strName);
 				con.println(strChooseSpecificQuiz[intQuizChoice - 1]);
-				con.println(intAnswerChecker+"/10");
-				intScore = Math.round(intAnswerChecker/10*100)/100;
-				con.println(intScore);
+				
+				if(strName.equalsIgnoreCase("statitan")){
+					con.drawString("BONUS POINT (+1)",300,400);
+					intAnswerChecker++;
+					con.println(intAnswerChecker+"+1 BONUS"+"/10");
+					intScore = Math.round(intAnswerChecker*100)/10;
+					con.println(intScore+"%");
+					TextOutputFile endofquiz = new TextOutputFile("leaderboard.txt", true);
+					endofquiz.println(strName);
+					endofquiz.println(strChooseSpecificQuiz[intQuizChoice - 1]);
+					endofquiz.println(intScore + "%");
+					endofquiz.close();
+					
+				}else if(!strName.equalsIgnoreCase("statitan")){
+					con.println(intAnswerChecker+"/10");
+					intScore = Math.round(intAnswerChecker*100)/10;
+					con.println(intScore+"%");
+					TextOutputFile endofquiz = new TextOutputFile("leaderboard.txt", true);
+					endofquiz.println(strName);
+					endofquiz.println(strChooseSpecificQuiz[intQuizChoice - 1]);
+					endofquiz.println(intScore + "%");
+					endofquiz.close();
+				}
+		}
 	}
-		}else if(intKey == 'v'){
+	
+		}else if(intKey == 'v' || intKey == 'V'){
+			
+			con.setDrawColor(Color.WHITE);
+			con.fillRect(0,0,1366,768);
+			con.setTextColor(Color.BLACK); 
+			con.clear();
+			con.repaint();
 			con.println("Leaderboard");
 			
-			//Output user score, quiz name, and user name to the file, arrange based on highest to lowest
-			//create a 2d array 3 columns, sort by percent column(3)
+			String strLeaderboard[][];
+			int intTESTCOUNT;
+			int intARRAYTEST = 0;
 			
-			TextOutputFile endofQuiz = new TextOutputFile("leaderboard.txt");
-		//	endofQuiz.println();
-		//	endofQuiz.println();
-		//	endofQuiz.println();
+			strLeaderboard  = new String[100][3];
+			TextInputFile currentleader = new TextInputFile("leaderboard.txt");
 			
-		
+			while(currentleader.eof() == false){
+				strLeaderboard[intARRAYTEST][0] = currentleader.readLine();
+				strLeaderboard[intARRAYTEST][1] = currentleader.readLine();
+				strLeaderboard[intARRAYTEST][2] = currentleader.readLine();
+				intARRAYTEST++;
+			
+			}
+			
+			currentleader.close();
+			
+			//con.repaint();
+			con.clear();
+			
+			for(intTESTCOUNT=0; intTESTCOUNT<intARRAYTEST; intTESTCOUNT++){
+				con.println("Name: "+strLeaderboard[intTESTCOUNT][0]);	
+				con.println("Quiz: "+strLeaderboard[intTESTCOUNT][1]);
+				con.println("Score: "+strLeaderboard[intTESTCOUNT][2]);
+				con.println("_______________________________________");
+				
+			}
+			
 		}else if(intKey == 'c' || intKey == 'C'){
 			
 			String strNewGameName;
@@ -243,6 +313,12 @@ public class CPTKaelynLee{
 			con.setDrawColor(new Color(0, 0, 0));
 			con.repaint();
 			con.drawString("Help",300,300);
+			con.clear();
+			con.repaint();
+			con.println("TO PLAY: Click the key (p), enter your name, choose a quiz option, and click 1 to start quiz");
+			con.println("TO CREATE A NEW QUIZ: Click the key (c), enter new quiz name, enter Question 1; Answer 1; Answer 2; Answer 3..., choose and play your new game in the  play section!");
+			con.println("TO VIEW LEADERBOARD: Click the key (v), see the current highest record");
+			con.println("TO QUIT: Click the key (q) and it will automatically close the game");
 		
 		}else if(intKey == 'q' || intKey == 'Q'){
 			System.exit(0);
@@ -251,11 +327,15 @@ public class CPTKaelynLee{
 			con.setDrawColor(Color.WHITE);
 			con.fillRect(0,0,1366,768);
 			con.setTextColor(Color.BLACK); 
-			Font fntGamePlay=con.loadFont("BilonaMedium-2v6W3.ttf",80);
+			Font fntGamePlay=con.loadFont("BilonaMedium-2v6W3.ttf",60);
 			con.setDrawFont(fntGamePlay);
 			con.setDrawColor(new Color(0, 0, 0));
 			con.repaint();
-			con.drawString("Write joke",300,300);
+			con.drawString("What do you call a sleeping T-Rex?",150,200);
+			con.clear();
+			con.sleep(1300);
+			con.repaint();
+			con.drawString("A dino-snore!",200,450);
 			
 		}
 							
