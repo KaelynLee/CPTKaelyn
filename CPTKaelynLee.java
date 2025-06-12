@@ -316,25 +316,30 @@ import java.awt.Font;
 				
 				for(intCOUNTER=0; intCOUNTER<intARRAYTEST-1; intCOUNTER++){
 					for(intCOUNTER2=0; intCOUNTER2<intARRAYTEST-intCOUNTER-1; intCOUNTER2++){
-				
+					//use for loop to order
 						intScore1=Integer.parseInt(strLeaderboard[intCOUNTER2][2].replace("%", ""));
+						//.replace("%","") removes the percentage and turns in back into just an integer
 						intScore2=Integer.parseInt(strLeaderboard[intCOUNTER2+1][2].replace("%", ""));
-						//convert the users score into a integer - remove the percentage to compare
+						//use the integer to compare the score numbers
 					
 						if(intScore1<intScore2){
 							//current score is less than the second score, then switch it
 							//go through whole for loop and switch
+							//SWAP INFO BELOW
 							strNameTemp = strLeaderboard[intCOUNTER2][0];
 							strLeaderboard[intCOUNTER2][0] = strLeaderboard[intCOUNTER2+1][0];
 							strLeaderboard[intCOUNTER2+1][0] = strNameTemp;
+							//swap name
 								
 							strQuizTemp = strLeaderboard[intCOUNTER2][1];
 							strLeaderboard[intCOUNTER2][1] = strLeaderboard[intCOUNTER2+1][1];
 							strLeaderboard[intCOUNTER2+1][1] = strQuizTemp;
+							//swap quiz
 							
 							strScoreTemp = strLeaderboard[intCOUNTER2][2];
 							strLeaderboard[intCOUNTER2][2] = strLeaderboard[intCOUNTER2+1][2];
 							strLeaderboard[intCOUNTER2+1][2] = strScoreTemp;
+							//swap score
 						}
 					}
 				}
